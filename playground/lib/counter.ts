@@ -2,7 +2,8 @@ import { TEZLINK_EVM_RPC } from './network';
 
 export { TEZLINK_EVM_RPC };
 
-export const COUNTER_ADDRESS = '0x525982C267F4B93cCB075B9323B069A993a9DEd7';
+export const COUNTER_ADDRESS =
+  process.env.NEXT_PUBLIC_COUNTER_ADDRESS ?? '0x525982C267F4B93cCB075B9323B069A993a9DEd7';
 
 export const SELECTORS = {
   increment: '0xd09de08a',

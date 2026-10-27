@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Loader2, RefreshCw, Plus, Minus, Hash } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { COUNTER_ADDRESS } from '@/lib/counter';
 
 interface CounterPanelProps {
   isConnected: boolean;
@@ -38,7 +39,7 @@ export function CounterPanel({
         <div>
           <p className="section-label">Counter Contract</p>
           <p className="mt-1 text-xs" style={{ color: 'var(--color-muted)', fontFamily: 'JetBrains Mono, monospace' }}>
-            0x7b0e325F…D7b
+            {COUNTER_ADDRESS}
           </p>
         </div>
         <Button

@@ -33,3 +33,22 @@ through the NAC gateway, and the hash returned to the dApp is a synthetic one
 the public RPC never indexes. Verify outcomes by re-reading state (the counter
 value, balances) rather than by looking the hash up in an explorer; allow
 ~15-40 s for the cross-runtime path to land.
+
+## Michelson page (`/michelson`)
+
+An octez.connect dApp for the Michelson side: connect over WalletConnect on
+`tezosx-previewnet`, then call a Michelson counter (`increment`, `decrement`,
+`reset`). The counter is `KT1HL4Scn5Ry8H6QEE2uYV7tcnc1CsEj6wgS`
+(`parameter (or (or (int %decrement) (int %increment)) (unit %reset)); storage int`);
+override it with `NEXT_PUBLIC_MICHELSON_COUNTER_ADDRESS`.
+
+**octez.connect 5.0.4 cannot finish a WalletConnect connection on previewnet
+as published.** `TEZOS_NETWORK_GENESIS_IDS` in
+`@tezos-x/octez.connect-core/dist/{esm,cjs}/src/utils/caip2.js` has no
+`TEZOSX_PREVIEWNET` entry, so the permission fan-out drops the chain and the
+dApp waits forever after the wallet approves. Until it is fixed upstream, add
+`[NetworkType.TEZOSX_PREVIEWNET]: 'NetXY2oPPzkxUW1'` to both files (the cjs one
+spells it `octez_connect_types_1.NetworkType`).
+
+The EVM Counter (`/`) was redeployed after a previewnet reset; set
+`NEXT_PUBLIC_COUNTER_ADDRESS` to the current one.
