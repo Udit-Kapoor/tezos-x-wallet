@@ -46,9 +46,12 @@ override it with `NEXT_PUBLIC_MICHELSON_COUNTER_ADDRESS`.
 as published.** `TEZOS_NETWORK_GENESIS_IDS` in
 `@tezos-x/octez.connect-core/dist/{esm,cjs}/src/utils/caip2.js` has no
 `TEZOSX_PREVIEWNET` entry, so the permission fan-out drops the chain and the
-dApp waits forever after the wallet approves. Until it is fixed upstream, add
-`[NetworkType.TEZOSX_PREVIEWNET]: 'NetXY2oPPzkxUW1'` to both files (the cjs one
-spells it `octez_connect_types_1.NetworkType`).
+dApp waits forever after the wallet approves. Until it is fixed upstream,
+`patches/@tezos-x+octez.connect-core+5.0.4.patch` adds
+`[NetworkType.TEZOSX_PREVIEWNET]: 'NetXY2oPPzkxUW1'` to both files, applied by
+`patch-package` on `postinstall` (so a Vercel build picks it up too). Drop the
+patch once octez.connect ships the entry; a version bump fails the install
+until you do.
 
 The EVM Counter (`/`) was redeployed after a previewnet reset; set
 `NEXT_PUBLIC_COUNTER_ADDRESS` to the current one.
