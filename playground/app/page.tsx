@@ -10,6 +10,7 @@ import { TxPanel, type TxEntry } from '@/components/TxPanel';
 import { useRelayer } from '@/hooks/useRelayer';
 import { useCounter } from '@/hooks/useCounter';
 import { useBalance } from '@/hooks/useBalance';
+import Link from 'next/link';
 
 export default function Home() {
   const relayer = useRelayer();
@@ -42,6 +43,9 @@ export default function Home() {
       <Header isConnected={relayer.isConnected} chainId={relayer.chainId} />
 
       <main className="max-w-4xl mx-auto px-4 py-8 space-y-4">
+        <Link href="/michelson" className="text-xs underline" style={{ color: 'var(--color-muted)' }}>
+          Michelson side (octez.connect) →
+        </Link>
         {/* Row 1: Wallet + Network */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <ConnectPanel
